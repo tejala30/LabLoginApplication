@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - protein_tracker@localhost" uuid="85a77d73-b5e0-4fcf-aed8-b8f9621b251a">
+      <secret-storage>master_key</secret-storage>
+      <user-name>appuser</user-name>
+      <schema-pattern>protein_tracker.*</schema-pattern>
+      <default-schemas>protein_tracker.*</default-schemas>
+    </data-source>
+  </component>
+</project>
