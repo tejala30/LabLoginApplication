@@ -32,7 +32,7 @@
     <c:when test="${status == 'fail'}">
         <h2> Welcome User</h2>
         <p> Invalid Credentials. Try again!!</p>
-        <form action="home" method="post">
+        <form action="login" method="post">
             User Id:<br>
             <input type="text" name="userid"><br>
             User name:<br>

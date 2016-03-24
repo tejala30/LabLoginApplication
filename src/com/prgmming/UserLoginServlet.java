@@ -6,10 +6,7 @@ import org.hibernate.Transaction;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -47,7 +44,8 @@ public class UserLoginServlet extends HttpServlet {
                 out.println();
                 out.println();
                 out.println();
-                request.setAttribute("userId", userId);
+                HttpSession sess = request.getSession();
+                sess.setAttribute("userId", userId);
             } else {
                 request.setAttribute("status", "fail");
             }

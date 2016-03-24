@@ -16,7 +16,7 @@
 <c:choose>
     <c:when test="${empty status}">
         <h2> Welcome User</h2>
-        <form action="login" method="get">
+        <form action="login" method="post">
             User Id:<br>
             <input type="text" name="userid"><br>
             User name:<br>
@@ -32,7 +32,7 @@
     <c:when test="${status == 'fail'}">
         <h2> Welcome User</h2>
         <p> Invalid Credentials. Try again!!</p>
-        <form action="home" method="get">
+        <form action="login" method="post">
             User Id:<br>
             <input type="text" name="userid"><br>
             User name:<br>

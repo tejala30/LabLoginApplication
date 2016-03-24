@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,14 +20,15 @@ import java.util.List;
  */
 @WebServlet(urlPatterns = {"/productentity"}, name = "ProductEntityServlet")
 public class ProductEntityServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<ProductEntity> entities;
 
-        Integer userId = (Integer) request.getAttribute("userId");
+        HttpSession sess = request.getSession(false);
+        Integer userId = Integer.parseInt(sess.getAttribute("userId").toString());
 
         System.out.println(userId);
 
@@ -35,10 +37,11 @@ public class ProductEntityServlet extends HttpServlet {
         String sql = "SELECT * FROM protein_tracker.product where userId = :user_id";
         SQLQuery query = session.createSQLQuery(sql);
         query.addEntity(ProductEntity.class);
+        query.setParameter("user_id", userId);
         entities = query.list();
         tx.commit();
         session.close();
-        HibernateUtilities.getSessionFactory().close();
+//        HibernateUtilities.getSessionFactory().close();
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/entity_index.jsp");
 //        getServletContext().setAttribute("entities", entities);
