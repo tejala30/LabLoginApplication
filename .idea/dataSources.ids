@@ -9,20 +9,53 @@
     <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
       <schema id="1" name="protein_tracker"/>
       <table id="2" parent="1" name="users"/>
-      <column id="3" parent="2" name="userid">
+      <table id="3" parent="1" name="product"/>
+      <column id="4" parent="2" name="userid">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="4" parent="2" name="username">
+      <column id="5" parent="2" name="username">
         <mandatory>1</mandatory>
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="5" parent="2" name="password">
+      <column id="6" parent="2" name="password">
         <mandatory>1</mandatory>
         <data-type>varchar(100)</data-type>
       </column>
-      <key id="6" parent="2" name="PRIMARY">
+      <key id="7" parent="2" name="PRIMARY">
         <columns>userid</columns>
+        <primary>1</primary>
+      </key>
+      <column id="8" parent="3" name="prodId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="9" parent="3" name="prodName">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="10" parent="3" name="date">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="11" parent="3" name="description">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="12" parent="3" name="quantity">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="13" parent="3" name="price">
+        <mandatory>1</mandatory>
+        <data-type>decimal(3)</data-type>
+      </column>
+      <column id="14" parent="3" name="userId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <key id="15" parent="3" name="PRIMARY">
+        <columns>prodId</columns>
         <primary>1</primary>
       </key>
     </database-model>

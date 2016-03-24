@@ -1,6 +1,7 @@
 package com.prgmming;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,10 +32,11 @@ public class UserLoginServlet extends HttpServlet {
         Cookie userIdCookie = new Cookie("userId", userId);
 
         Session session = HibernateUtilities.getSessionFactory().openSession();
-        session.beginTransaction();
+        Transaction tx = session.beginTransaction();
         UserEntity loadedUserEntity = (UserEntity) session.load(UserEntity.class, Integer.parseInt(userId));
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+
 
         if (userName!=null && userName.matches(loadedUserEntity.getUsername())) {
             if (password!=null && password.matches(loadedUserEntity.getPassword())){
@@ -45,6 +47,7 @@ public class UserLoginServlet extends HttpServlet {
                 out.println();
                 out.println();
                 out.println();
+                request.setAttribute("userId", userId);
             } else {
                 request.setAttribute("status", "fail");
             }
@@ -52,11 +55,11 @@ public class UserLoginServlet extends HttpServlet {
             request.setAttribute("status", "fail");
         }
 
+
         response.addCookie(userIdCookie);
         dispatcher.forward(request, response);
-//        session.getTransaction().commit();
-//
-//        session.close();
+        tx.commit();
+        session.close();
 //        HibernateUtilities.getSessionFactory().close();
     }
 }

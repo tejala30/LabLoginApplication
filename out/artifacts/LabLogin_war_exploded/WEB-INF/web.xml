@@ -32,4 +32,13 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ProductEntityServlet</servlet-name>
+        <servlet-class>com.prgmming.ProductEntityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductEntityServlet</servlet-name>
+        <url-pattern>/productentity</url-pattern>
+    </servlet-mapping>
+
 </web-app>

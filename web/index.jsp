@@ -17,7 +17,7 @@
 <a href="/login.jsp">Click here to go to the login page</a>
 <br />
 <br />
-<a href="/entity">Click here to see the list of Data records</a>
+<a href="/productentity">Click here to see the list of Data records</a>
 <br />
 <br />
 <a href="/logout.jsp">Click here to go to the logout page</a>

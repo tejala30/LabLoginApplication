@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="31733367">
+  <component name="DataSourceManagerImpl" format="xml" hash="1090218067">
     <data-source source="LOCAL" name="MySQL - protein_tracker@localhost" uuid="85a77d73-b5e0-4fcf-aed8-b8f9621b251a">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>

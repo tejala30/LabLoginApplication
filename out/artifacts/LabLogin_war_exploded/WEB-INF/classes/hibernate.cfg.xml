@@ -13,6 +13,7 @@
     <property name="hibernate.connection.username">appuser</property>
     <mapping class="com.prgmming.UserEntity"/>
     <mapping resource="UserEntity.xml"/>
+    <mapping resource="ProductEntity.xml"/>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>

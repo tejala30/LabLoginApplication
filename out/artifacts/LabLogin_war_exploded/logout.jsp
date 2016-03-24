@@ -11,7 +11,7 @@
     <title>Logout page</title>
 </head>
 <body>
-    <form action="logout" method="post">
+    <form action="logout" method="get">
          <input type="submit" name="button" value="Logout" />
     </form>
 </body>

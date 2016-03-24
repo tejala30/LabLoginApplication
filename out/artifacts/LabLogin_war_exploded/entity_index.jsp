@@ -26,7 +26,7 @@
     <c:otherwise>
         <ul>
             <c:forEach items="${entities}" var="entity">
-                <li>${entity.username}</li>
+                <li>${entity.prodName}</li>
             </c:forEach>
         </ul>
     </c:otherwise>
