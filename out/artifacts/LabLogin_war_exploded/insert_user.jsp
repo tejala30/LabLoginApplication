@@ -1,22 +1,22 @@
 <%--
   Created by IntelliJ IDEA.
   User: tethippe
-  Date: 3/22/2016
-  Time: 3:47 PM
+  Date: 3/25/2016
+  Time: 2:27 PM
   To change this template use File | Settings | File Templates.
 --%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Login Page</title>
+    <title>New User</title>
 </head>
 <body>
+
 <c:choose>
     <c:when test="${empty status}">
-        <h2> Welcome User</h2>
-        <form action="login" method="post">
+        <h2>Enter the below details</h2>
+        <form action="newuser" method="post">
             User Id:<br>
             <input type="text" name="userid"><br>
             User name:<br>
@@ -27,15 +27,12 @@
             <br>
             <br>
             <input type="submit" value="Submit">
-        </form>
-        <form action="/insert_user.jsp" method="post">
-            <input type="submit" name="create_button" value="Create User">
         </form>
     </c:when>
     <c:when test="${status == 'fail'}">
-        <h2> Welcome User</h2>
-        <p> Invalid Credentials. Try again!!</p>
-        <form action="login" method="post">
+        <h2>Account creation failed. Try again</h2>
+        <h2>Enter the below details</h2>
+        <form action="newuser" method="post">
             User Id:<br>
             <input type="text" name="userid"><br>
             User name:<br>
@@ -47,20 +44,12 @@
             <br>
             <input type="submit" value="Submit">
         </form>
-        <form action="/insert_user.jsp" method="post">
-            <input type="submit" name="create_button" value="Create User">
-        </form>
     </c:when>
     <c:otherwise>
-        <h2> Welcome ${status}</h2>
-        <p> You have successfully logged in!!</p>
-        <a href="/index.jsp">Go back to home page</a>
+        <h2> Welcome!!</h2>
+        <p> You have successfully created account in!!</p>
+        <a href="/login.jsp">Click on link to Login</a>
     </c:otherwise>
 </c:choose>
-<br />
-<br />
-
 </body>
 </html>
-
-

@@ -26,7 +26,7 @@ public class UserLoginServlet extends HttpServlet {
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
 
-        Cookie userIdCookie = new Cookie("userId", userId);
+
 
         Session session = HibernateUtilities.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -44,8 +44,8 @@ public class UserLoginServlet extends HttpServlet {
                 out.println();
                 out.println();
                 out.println();
-                HttpSession sess = request.getSession();
-                sess.setAttribute("userId", userId);
+                Cookie userIdCookie = new Cookie("userId", userId);
+                response.addCookie(userIdCookie);
             } else {
                 request.setAttribute("status", "fail");
             }
@@ -54,7 +54,6 @@ public class UserLoginServlet extends HttpServlet {
         }
 
 
-        response.addCookie(userIdCookie);
         dispatcher.forward(request, response);
         tx.commit();
         session.close();

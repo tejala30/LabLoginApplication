@@ -41,4 +41,12 @@
         <url-pattern>/productentity</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>NewUserServlet</servlet-name>
+        <servlet-class>com.prgmming.NewUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewUserServlet</servlet-name>
+        <url-pattern>/newuser</url-pattern>
+    </servlet-mapping>
 </web-app>

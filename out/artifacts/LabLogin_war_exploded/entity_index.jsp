@@ -31,6 +31,8 @@
         </ul>
     </c:otherwise>
 </c:choose>
+
+<a href="/index.jsp">Go back to home page</a>
 </body>
 </html>
 </body>

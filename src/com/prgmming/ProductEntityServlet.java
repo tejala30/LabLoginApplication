@@ -8,12 +8,11 @@ import org.hibernate.Transaction;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 
 /**
  * Created by tethippe on 3/23/2016.
@@ -27,25 +26,44 @@ public class ProductEntityServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<ProductEntity> entities;
 
-        HttpSession sess = request.getSession(false);
-        Integer userId = Integer.parseInt(sess.getAttribute("userId").toString());
+        Cookie cookie;
+        Cookie[] cookies = null;
+        cookies = request.getCookies();
+        Integer userId = -1;
 
-        System.out.println(userId);
+        Boolean cookieFound = false;
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
 
-        Session session = HibernateUtilities.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
-        String sql = "SELECT * FROM protein_tracker.product where userId = :user_id";
-        SQLQuery query = session.createSQLQuery(sql);
-        query.addEntity(ProductEntity.class);
-        query.setParameter("user_id", userId);
-        entities = query.list();
-        tx.commit();
-        session.close();
-//        HibernateUtilities.getSessionFactory().close();
+        if( cookies != null ) {
+            for (Cookie cooky : cookies) {
+                cookie = cooky;
+                if ((cookie.getName()).compareTo("userId") == 0) {
+                    userId = Integer.parseInt(cookie.getValue());
 
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/entity_index.jsp");
-//        getServletContext().setAttribute("entities", entities);
-        request.setAttribute("entities", entities);
-        dispatcher.forward(request, response);
+                    Session session = HibernateUtilities.getSessionFactory().openSession();
+                    Transaction tx = session.beginTransaction();
+
+                    System.out.println(userId);
+                    if (userId == 0) {
+                        entities = session.createCriteria(ProductEntity.class).list();
+                    } else {
+                        String sql = "SELECT * FROM protein_tracker.product where userId = :user_id";
+                        SQLQuery query = session.createSQLQuery(sql);
+                        query.addEntity(ProductEntity.class);
+                        query.setParameter("user_id", userId);
+                        entities = query.list();
+                    }
+
+                    tx.commit();
+                    session.close();
+
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/entity_index.jsp");
+                    request.setAttribute("entities", entities);
+                    dispatcher.forward(request, response);
+//                    return;
+                }
+            }
+        }
     }
 }

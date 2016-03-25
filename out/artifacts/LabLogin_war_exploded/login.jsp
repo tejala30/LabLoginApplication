@@ -28,6 +28,9 @@
             <br>
             <input type="submit" value="Submit">
         </form>
+        <form action="/insert_user.jsp" method="post">
+            <input type="submit" name="create_button" value="Create User">
+        </form>
     </c:when>
     <c:when test="${status == 'fail'}">
         <h2> Welcome User</h2>
@@ -43,6 +46,9 @@
             <br>
             <br>
             <input type="submit" value="Submit">
+        </form>
+        <form action="/insert_user.jsp" method="post">
+            <input type="submit" name="create_button" value="Create User">
         </form>
     </c:when>
     <c:otherwise>
