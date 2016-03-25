@@ -39,6 +39,7 @@ public class ProductEntityServlet extends HttpServlet {
             for (Cookie cooky : cookies) {
                 cookie = cooky;
                 if ((cookie.getName()).compareTo("userId") == 0) {
+                    cookieFound = true;
                     userId = Integer.parseInt(cookie.getValue());
 
                     Session session = HibernateUtilities.getSessionFactory().openSession();
@@ -64,6 +65,10 @@ public class ProductEntityServlet extends HttpServlet {
 //                    return;
                 }
             }
+        }
+
+        if (!cookieFound) {
+            response.sendRedirect("/login.jsp");
         }
     }
 }
